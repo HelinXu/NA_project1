@@ -2,19 +2,19 @@
 
 ## 01 bilinear interpolation
 
-see 1_bilinear_interpolation.py
+see bilinear_interpolation.py
 
 usage:
 
 ```shell
-$ python 1_bilinear_interpolation.py
+$ python bilinear_interpolation.py
 ```
 
 output png file is saved under `./img`.
 
 ## 02 trilinear interpolation
 
-see 2_trilinear_interpolation.py
+see trilinear_interpolation.py
 
 first, download `sdf.npy` from qr-code.png and put it under `.sdf/`:
 
@@ -26,7 +26,7 @@ first, download `sdf.npy` from qr-code.png and put it under `.sdf/`:
 
 usage:
 ```shell
-usage: 2_trilinear_interpolation.py [-h] [-x X] [-y Y] [-z Z]
+usage: trilinear_interpolation.py [-h] [-x X] [-y Y] [-z Z]
                                     [--save_name SAVE_NAME]
                                     [--save_path SAVE_PATH] [-n N]
 
@@ -46,10 +46,10 @@ optional arguments:
 examples:
 
 ```shell
-$ python 2_trilinear_interpolation.py -x -1.34 -y 0.4 -z 2.94 # trilinear interpolation at arbitrary point (x, y, z)
+$ python trilinear_interpolation.py -x -1.34 -y 0.4 -z 2.94 # trilinear interpolation at arbitrary point (x, y, z)
 sdf value at (-1.34, 0.4, 2.94) is:  -2.0801144991718887
 
-$ python 2_trilinear_interpolation.py --save_path img --save_name point_cloud_5000.ply -n 5000 # sample 5000 points and save point cloud to ./img/point_cloud_5000.ply
+$ python trilinear_interpolation.py --save_path img --save_name point_cloud_5000.ply -n 5000 # sample 5000 points and save point cloud to ./img/point_cloud_5000.ply
 sdf value at (0, 0, 0) is:  0.6956263619461209
 point cloud saved to img/point_cloud_5000.ply
 ```
