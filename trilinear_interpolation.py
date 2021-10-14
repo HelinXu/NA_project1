@@ -22,6 +22,7 @@ def is_valid_point(x, y, z):
 def get_floor_index(x):
     '''
     round x to floor, with division value = D, x starting from -3.
+
     Output: index
     '''
     return math.floor((x + 3.) / D)
@@ -31,6 +32,7 @@ def l(x):
     '''
     input:
         x: coordinate
+    
     output:
         distance between x and nearest lower sampling coordinate.
     '''
@@ -41,6 +43,7 @@ def u(x):
     '''
     input:
         x: coordinate
+    
     output:
         distance between x and nearest upper sampling coordinate.
     '''
@@ -52,6 +55,7 @@ def trilinear_interpolate(sdf, x, y, z):
     Input:
         - sdf: numpy array.
         - x, y, z: coordinate to be interpolated.
+    
     Output:
         - interpolated sdf value.
     '''
@@ -81,8 +85,11 @@ def point_cloud_sampling(sdf, N, epsilon=D/10, save_name='./point_cloud.ply', n=
         - sdf: numpy array.
         - N: number of points to sample.
         - epsilon: threshold for sampling points that are within epsilone to surface.
-        - save_name: name of the file
+        - save_name: name of the file. None for not saving.
         - n: number of points in each cube to sample.
+    
+    Output:
+        - points_downsampled: list of N points
     '''
     def near_surface(x_idx, y_idx, z_idx):
         '''judge if point is near the surface.'''
@@ -124,7 +131,9 @@ def point_cloud_sampling(sdf, N, epsilon=D/10, save_name='./point_cloud.ply', n=
                 if near_surface(x_idx, y_idx, z_idx):
                     points += sample_in_cube(x_idx, y_idx, z_idx)
     points_downsampled = down_sampling(points, N)
-    save_point_cloud_to_ply(points_downsampled)
+    if save_name != None:
+        save_point_cloud_to_ply(points_downsampled)
+    return points_downsampled
 
 
 if __name__ == '__main__':
